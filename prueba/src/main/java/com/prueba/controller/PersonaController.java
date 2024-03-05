@@ -32,4 +32,30 @@ public class PersonaController {
         return personaService.update(persona);
     }
 
+    @GetMapping("/personaId/{id}")
+    public Persona findById(@PathVariable Long id){
+        return personaService.findById(id);
+    }
+    @GetMapping("/personaName/{name}")
+    public List<Persona>findByNombre(@PathVariable String name){
+        return personaService.findByName(name);
+    }
+
+    @GetMapping("/personaDireccion/{direccion}")
+    public List<Persona>findByDireccion(@PathVariable String direccion){
+        return personaService.findByDireccion(direccion);
+    }
+
+    @GetMapping ("/personaFilter")
+    public List<Persona>filter(@RequestParam(defaultValue = "") String name,
+                               @RequestParam(defaultValue = "0") Long edad,
+                               @RequestParam(defaultValue = "") String direccion){
+        return personaService.filter(name,edad,direccion);
+    }
+
+    @GetMapping ("/joinTables")
+    public List<Object[]>joinTables(){
+        return personaService.joinTables();
+    }
+
 }
